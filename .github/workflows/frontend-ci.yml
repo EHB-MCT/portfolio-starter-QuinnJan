@@ -9,9 +9,6 @@ on:
     paths: [ "Frontend/**" ]
   pull_request:
     paths: [ "Frontend/**" ]
-  push:
-    branches: [ "main" ]
-    paths: [ "Frontend/**" ]
 
 jobs:
   build:
