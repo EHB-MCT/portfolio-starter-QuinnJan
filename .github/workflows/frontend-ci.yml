@@ -34,7 +34,7 @@ jobs:
       run: npm i 
     - name: Run Build
       working-directory: ./Frontend
-      run: npm build 
+      run: npm run build 
     - name: Run Test
       working-directory: ./Frontend
-      run: npm test
+      run: npm run test
