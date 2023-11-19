@@ -30,5 +30,8 @@ jobs:
         cache: 'npm'
         cache-dependency-path: 'Frontend/package-lock.json'
     - run: npm i
+      uses: ./
     - run: npm run build
+      uses: ./
     - run: npm run test
+      uses: ./
