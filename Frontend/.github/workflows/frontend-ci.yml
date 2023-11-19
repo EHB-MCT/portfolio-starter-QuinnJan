@@ -4,9 +4,9 @@
 name: Frontend CI
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
+    paths: [ "Frontend/**" ]
+  push:
     branches: [ "main" ]
 
 jobs:
