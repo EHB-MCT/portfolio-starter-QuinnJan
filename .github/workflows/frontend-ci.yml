@@ -15,9 +15,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./Frontend
 
     strategy:
       matrix:
@@ -27,11 +24,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      working-directory: ./Frontend
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: 'Frontend/package-lock.json'
     - run: npm i
     - run: npm run build
     - run: npm run test
