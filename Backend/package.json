@@ -4,10 +4,10 @@
   "description": "Project for Quinn",
   "main": "index.js",
   "prisma": {
-  "seed": "node --require esbuild-register prisma/seed.ts"
+    "seed": "node --require esbuild-register prisma/seed.ts"
   },
   "scripts": {
-    "test": "ts-mocha ./src/index.spec.ts",
+    "test": "ts-mocha ./src/index.spec.ts --exit",
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "serve": "node dist/index.js",
@@ -38,5 +38,9 @@
     "express-validator": "^7.0.1",
     "mocha": "^10.2.0",
     "ts-mocha": "^10.0.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
 }
