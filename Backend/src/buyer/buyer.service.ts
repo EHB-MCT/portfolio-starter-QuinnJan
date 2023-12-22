@@ -2,8 +2,12 @@ import { db } from "../utils/db.server";
 
 export type Buyer = {
   id: number;
+  createdAt: Date;
+  updatedAt: Date;
   firstName: string;
   lastName: string;
+  email: string;
+  phonenumber: string;
 };
 
 //GET ALL BUYERS FUNCTION
@@ -13,6 +17,10 @@ export const listBuyers = async (): Promise<Buyer[]> => {
       id: true,
       firstName: true,
       lastName: true,
+      email: true,
+      phonenumber: true,
+      createdAt: true,
+      updatedAt: true,
     },
   });
 };
@@ -27,6 +35,8 @@ export const getBuyer = async (id: number): Promise<Buyer | null> => {
       id: true,
       firstName: true,
       lastName: true,
+      email: true,
+      phonenumber: true,
       createdAt: true,
       updatedAt: true,
     },
@@ -35,18 +45,37 @@ export const getBuyer = async (id: number): Promise<Buyer | null> => {
 
 //CREATE FUNCTION
 export const createBuyer = async (buyer: Omit<Buyer, "id">): Promise<Buyer> => {
-  const { firstName, lastName } = buyer;
-  return db.buyer.create({
+  const { firstName, lastName, email, phonenumber } = buyer;
+  const createdBuyer = await db.buyer.create({
     data: {
       firstName,
       lastName,
+      email,
+      phonenumber,
     },
     select: {
       id: true,
+      createdAt: true,
+      updatedAt: true,
       firstName: true,
       lastName: true,
+      email: true,
+      phonenumber: true,
     },
   });
+
+  // Convert Prisma generated type to your defined type
+  const formattedBuyer: Buyer = {
+    id: createdBuyer.id,
+    createdAt: createdBuyer.createdAt,
+    updatedAt: createdBuyer.updatedAt,
+    firstName: createdBuyer.firstName,
+    lastName: createdBuyer.lastName,
+    email: createdBuyer.email,
+    phonenumber: createdBuyer.phonenumber,
+  };
+
+  return formattedBuyer;
 };
 
 //UPDATE FUNCTION
@@ -54,7 +83,7 @@ export const updateBuyer = async (
   buyer: Omit<Buyer, "id">,
   id: number
 ): Promise<Buyer> => {
-  const { firstName, lastName } = buyer;
+  const { firstName, lastName, email, phonenumber } = buyer;
   return db.buyer.update({
     where: {
       id,
@@ -62,11 +91,15 @@ export const updateBuyer = async (
     data: {
       firstName,
       lastName,
+      email,
+      phonenumber,
     },
     select: {
       id: true,
       firstName: true,
       lastName: true,
+      email: true,
+      phonenumber: true,
       createdAt: true,
       updatedAt: true,
     },
