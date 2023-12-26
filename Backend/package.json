@@ -7,7 +7,7 @@
     "seed": "node --require esbuild-register prisma/seed.ts"
   },
   "scripts": {
-    "test": "ts-mocha ./src/index.spec.ts --exit",
+    "test": "ts-mocha src/**/*.ts --exit",
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "serve": "node dist/index.js",
