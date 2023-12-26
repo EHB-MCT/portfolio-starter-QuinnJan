@@ -3,13 +3,20 @@ import app from "./index";
 const request = require("supertest");
 const assert = require("assert");
 
-// describe("GET /", () => {
-//   it("responds with json", function (done) {
+// describe("POST /api/buyers/", () => {
+//   it("Test response if data is incorrect format", function (done) {
 //     request(app)
-//       .get("/")
+//       .post("/api/buyers/")
+//       .send({
+//         firstName: "string",
+//         lastName: "string",
+//         email: "string",
+//         //Should be string
+//         phonenumber: 3,
+//       })
 //       .set("Accept", "application/json")
 //       .expect("Content-Type", /json/)
-//       .expect(200, done);
+//       .expect(400, done);
 //   });
 // });
 
@@ -22,6 +29,7 @@ describe("POST /api/cars/", () => {
         type: "SUV",
         price: 20000,
         buyerId: 20,
+        brand: "BMW",
       })
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
@@ -37,6 +45,7 @@ describe("POST /api/cars/", () => {
         name: "BMW",
         type: "SUV",
         price: 20000,
+        brand: "BMW",
         //Should be Int
         buyerId: "hello",
       })

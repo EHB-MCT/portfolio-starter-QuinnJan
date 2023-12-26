@@ -38,6 +38,7 @@ carRouter.post(
   body("type").isString(),
   body("price").isNumeric(),
   body("buyerId").isNumeric(),
+  body("brand").isString(),
   async (request: Request, response: Response) => {
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -58,7 +59,7 @@ carRouter.post(
 
 //Resolve error
 
-// // PUT: Update a car
+// PUT: Update a car
 // carRouter.put(
 //   "/:id",
 //   body("name").isString(),
@@ -81,13 +82,13 @@ carRouter.post(
 //   }
 // );
 
-// // DELETE: Delete a car (ID)
-// carRouter.delete("/:id", async (request: Request, response: Response) => {
-//   const id: number = parseInt(request.params.id, 10);
-//   try {
-//     await CarService.deleteCar(id);
-//     return response.status(204).json("Car deletion: succes!");
-//   } catch (error: any) {
-//     return response.status(500).json(error.message);
-//   }
-// });
+// DELETE: Delete a car (ID)
+carRouter.delete("/:id", async (request: Request, response: Response) => {
+  const id: number = parseInt(request.params.id);
+  try {
+    await CarService.deleteCar(id);
+    return response.status(204).json("Car deletion: succes!");
+  } catch (error: any) {
+    return response.status(500).json(error.message);
+  }
+});

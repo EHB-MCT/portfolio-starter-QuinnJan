@@ -14,6 +14,8 @@ model Buyer {
   updatedAt DateTime @updatedAt
   firstName String
   lastName String
+  email String
+  phonenumber String
   Car Car[] 
 }
 
@@ -23,6 +25,7 @@ model Car {
   updatedAt DateTime @updatedAt
   name String 
   type String
+  brand String
   price Int
   owner Buyer @relation(fields: [buyerId], references: [id], onDelete: Cascade)
   buyerId Int
