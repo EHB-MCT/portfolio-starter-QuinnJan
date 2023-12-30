@@ -96,35 +96,45 @@ export const createCar = async (car: {
   });
 };
 
-//Resolve error
+// UPDATE CAR FUNCTION
+export const updateCar = async (
+  car: Omit<Car, "id">,
+  id: number
+): Promise<Car> => {
+  const { name, type, price, brand, buyerId } = car;
 
-//UPDATE CAR FUNCTION
-// export const updateCar = async (
-//   car: Omit<Car, "id">,
-//   id: number
-// ): Promise<Car> => {
-//   const { name, type, price, owner, buyerId } = car;
-//   return db.car.update({
-//     where: {
-//       id,
-//     },
-//     data: {
-//       name,
-//       type,
-//       price,
-//       owner,
-//       buyerId,
-//     },
-//     select: {
-//       id: true,
-//       name: true,
-//       type: true,
-//       price: true,
-//       owner: true,
-//       buyerId: true,
-//     },
-//   });
-// };
+  const updatedCar = await db.car.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (updatedCar === null) {
+    throw new HttpError(404, `Car: ${id} does not exist`);
+  }
+
+  return db.car.update({
+    where: {
+      id,
+    },
+    data: {
+      name,
+      type,
+      price,
+      brand,
+      buyerId,
+    },
+    select: {
+      id: true,
+      name: true,
+      type: true,
+      price: true,
+      owner: true,
+      brand: true,
+      buyerId: true,
+    },
+  });
+};
 
 //DELETE CAR FUNCTION
 export const deleteCar = async (id: number): Promise<void> => {
@@ -134,3 +144,7 @@ export const deleteCar = async (id: number): Promise<void> => {
     },
   });
 };
+
+// export function updateCar(car: any) {
+//   throw new Error("Function not implemented.");
+// }
