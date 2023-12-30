@@ -1,12 +1,14 @@
 import { Buyer } from "../utilities/types";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 /**
  * @input void/no parameters
  * @description makes a request to my express rest API
  * @returns a list of all existing buyers
  */
 export const fetchBuyers = (): Promise<Buyer[]> => {
-  return fetch("http://localhost:5000/api/buyers").then((res) => res.json());
+  return fetch(`${BACKEND_URL}/api/buyers`).then((res) => res.json());
 };
 
 /**
@@ -15,7 +17,7 @@ export const fetchBuyers = (): Promise<Buyer[]> => {
  * @returns void
  */
 export const deleteBuyerById = (id: number): Promise<void> => {
-  const deleteEndpoint = `http://localhost:5000/api/buyers/${id}`;
+  const deleteEndpoint = `${BACKEND_URL}/api/buyers/${id}`;
 
   return fetch(deleteEndpoint, {
     method: "DELETE",
