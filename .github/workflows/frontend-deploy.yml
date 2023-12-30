@@ -41,3 +41,5 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_QUINN_PORTFOLIO_FRONTEND }}"
           channelId: live
           projectId: quinn-portfolio-frontend
+        env:
+          VITE_BACKEND_URL: https://quinn-backend-5xv5hsjyya-ew.a.run.app/
