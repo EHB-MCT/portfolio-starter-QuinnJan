@@ -31,14 +31,21 @@ carRouter.get("/:id", async (request: Request, response: Response) => {
   }
 });
 
-// // // POST: Create a car (params: name, type, price, owner)
+// POST: Create a car (params: name, type, price, brand, owner)
 carRouter.post(
   "/",
   body("name").isString(),
   body("type").isString(),
   body("price").isNumeric(),
   body("buyerId").isNumeric(),
-  body("brand").isString(),
+  body("brand").isIn([
+    "BMW",
+    "Tesla",
+    "Audi",
+    "Fiat",
+    "Mercedes",
+    "Volkswagen",
+  ]),
   async (request: Request, response: Response) => {
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -57,30 +64,40 @@ carRouter.post(
   }
 );
 
-//Resolve error
-
-// PUT: Update a car
-// carRouter.put(
-//   "/:id",
-//   body("name").isString(),
-//   body("type").isString(),
-//   body("price").isNumeric(),
-//   body("owner").isString(),
-//   async (request: Request, response: Response) => {
-//     const errors = validationResult(request);
-//     if (!errors.isEmpty()) {
-//       return response.status(400).json({ errors: errors.array() });
-//     }
-//     const id: number = parseInt(request.params.id, 10);
-//     try {
-//       const car = request.body;
-//       const updatedCar = await CarService.updateCar(car, id);
-//       return response.status(200).json(updatedCar);
-//     } catch (error: any) {
-//       return response.status(500).json(error.message);
-//     }
-//   }
-// );
+carRouter.put(
+  "/:id",
+  body("name").isString(),
+  body("type").isString(),
+  body("price").isNumeric(),
+  body("buyerId").isNumeric(),
+  body("brand").isIn([
+    "BMW",
+    "Tesla",
+    "Audi",
+    "Fiat",
+    "Mercedes",
+    "Volkswagen",
+  ]),
+  async (request: Request, response: Response) => {
+    const errors = validationResult(request);
+    if (!errors.isEmpty()) {
+      return response.status(400).json({ errors: errors.array() });
+    }
+    try {
+      const car = request.body;
+      const updatedCar = await CarService.updateCar(
+        car,
+        Number(request.params.id)
+      );
+      return response.status(201).json(updatedCar);
+    } catch (error: any) {
+      if (error instanceof HttpError && error.statusCode == 404) {
+        return response.status(404).json(error.message);
+      }
+      return response.status(500).json(error.message);
+    }
+  }
+);
 
 // DELETE: Delete a car (ID)
 carRouter.delete("/:id", async (request: Request, response: Response) => {
