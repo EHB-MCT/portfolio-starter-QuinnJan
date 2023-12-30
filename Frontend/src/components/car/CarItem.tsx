@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { formatCurrency } from "../../utilities/formatCurrency";
-import { CarAttributes, carBrandImageMap } from "../../utilities/types";
+import { CarAttributes } from "../../utilities/types";
+import { getImageForBrand } from "../../utilities/brandImageMapper";
 
 export type StoreItemProps = {
   item: CarAttributes;
@@ -37,7 +38,7 @@ export function StoreItem({ item, onDelete, onAddMessage }: StoreItemProps) {
     <Card className="h-100">
       <Card.Img
         variant="top"
-        src={carBrandImageMap[item.brand]}
+        src={getImageForBrand(item.brand)}
         height="200px"
         style={{ objectFit: "cover" }}
       />
