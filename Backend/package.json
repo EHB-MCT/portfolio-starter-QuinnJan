@@ -9,7 +9,7 @@
   "scripts": {
     "test": "SET DATABASE_URL=file:./test.db & ts-mocha src/**/*.ts --exit",
     "start": "ts-node src/index.ts",
-    "build": "SET DATABASE_URL=file:./production.db & tsc",
+    "build": "prisma generate && tsc",
     "serve": "node dist/index.js",
     "dev": "SET DATABASE_URL=file:./dev.db & nodemon src/index.ts"
   },
