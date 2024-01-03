@@ -7,11 +7,11 @@
     "seed": "node --require esbuild-register prisma/seed.ts"
   },
   "scripts": {
-    "test": "SET DATABASE_URL=file:./test.db & ts-mocha src/**/*.ts --exit",
+    "test": "cross-env DATABASE_URL=file:./test.db && prisma migrate reset --force && ts-mocha src/**/*.ts --exit",
     "start": "ts-node src/index.ts",
-    "build": "prisma generate && tsc",
+    "build": "cross-env DATABASE_URL=file:./production.db && prisma generate && tsc",
     "serve": "node dist/index.js",
-    "dev": "SET DATABASE_URL=file:./dev.db & nodemon src/index.ts"
+    "dev": "cross-env DATABASE_URL=file:./dev.db && nodemon src/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +23,7 @@
     "@types/jest": "^29.5.8",
     "@types/mocha": "^10.0.4",
     "@types/node": "^20.9.4",
+    "cross-env": "^7.0.3",
     "esbuild-register": "^3.5.0",
     "express": "^4.18.2",
     "nodemon": "^3.0.1",
