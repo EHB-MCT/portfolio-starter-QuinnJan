@@ -6,10 +6,7 @@ name: Frontend CI
 on:
   push:
     branches: ["main"]
-    paths: ["Frontend/**"]
-
-env:
-  VITE_BACKEND_URL: https://quinn-backend-5xv5hsjyya-ew.a.run.app/
+    paths: ["Frontend/**"] 
 
 jobs:
   build:

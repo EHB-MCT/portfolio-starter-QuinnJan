@@ -12,6 +12,22 @@ dotenv.config();
 
 // const PORT: number = parseInt(process.env.PORT as string, 10);
 
+console.log(process.env.NODE_ENV);
+
+const config = {
+  development: {
+    databaseUrl: "",
+  },
+  production: {
+    databaseUrl: "",
+  },
+  testing: {
+    databaseUrl: "",
+  },
+};
+
+module.exports = config;
+
 const PORT = 5000;
 
 const app = express();

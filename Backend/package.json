@@ -7,11 +7,11 @@
     "seed": "node --require esbuild-register prisma/seed.ts"
   },
   "scripts": {
-    "test": "ts-mocha src/**/*.ts --exit",
+    "test": "SET DATABASE_URL=file:./test.db & ts-mocha src/**/*.ts --exit",
     "start": "ts-node src/index.ts",
-    "build": "tsc",
+    "build": "SET DATABASE_URL=file:./production.db & tsc",
     "serve": "node dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "SET DATABASE_URL=file:./dev.db & nodemon src/index.ts"
   },
   "author": "",
   "license": "ISC",
