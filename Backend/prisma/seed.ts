@@ -1,5 +1,3 @@
-// Add default data to database
-
 import { db } from "../src/utils/db.server";
 
 type Buyer = {
@@ -17,8 +15,8 @@ type Car = {
 };
 
 async function seed() {
-  getBuyers().map((buyer) => {
-    return db.buyer.create({
+  getBuyers().forEach(async (buyer) => {
+    const buyers = await db.buyer.create({
       data: {
         firstName: buyer.firstName,
         lastName: buyer.lastName,
@@ -26,7 +24,9 @@ async function seed() {
         phonenumber: buyer.phonenumber,
       },
     });
+    console.log(buyers);
   });
+
   const buyer = await db.buyer.findFirst({
     where: {
       firstName: "Tom",
@@ -34,9 +34,9 @@ async function seed() {
   });
 
   if (buyer) {
-    getCars().map((car) => {
+    getCars().forEach(async (car) => {
       const { name, type, price, brand } = car;
-      return db.car.create({
+      const newCar = await db.car.create({
         data: {
           name,
           type,
@@ -45,9 +45,11 @@ async function seed() {
           buyerId: buyer.id,
         },
       });
+      console.log(newCar);
     });
   }
 }
+
 function getBuyers(): Array<Buyer> {
   return [
     {
@@ -76,21 +78,22 @@ function getCars(): Array<Car> {
     {
       name: "Tesla X",
       type: "SUV",
-      price: 120.0,
-      brand: "Audi",
+      price: 120000.0,
+      brand: "Tesla",
     },
     {
       name: "Mercedes",
       type: "Coupé",
-      price: 30.0,
+      price: 30000.0,
       brand: "Mercedes",
     },
     {
       name: "BMW",
       type: "SUV",
-      price: 70.0,
+      price: 70000.0,
       brand: "BMW",
     },
   ];
 }
+
 seed();

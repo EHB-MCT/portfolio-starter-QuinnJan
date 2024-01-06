@@ -6,12 +6,6 @@ import { buyerRouter } from "./buyer/buyer.router";
 import { carRouter } from "./car/car.router";
 dotenv.config();
 
-// if (!process.env.PORT) {
-//   process.exit(1);
-// }
-
-// const PORT: number = parseInt(process.env.PORT as string, 10);
-
 const PORT = 5000;
 
 const app = express();
