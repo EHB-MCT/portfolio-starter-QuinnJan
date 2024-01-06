@@ -3,6 +3,8 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { updateBuyer } from "../../services/buyer-api-services";
 import { Buyer } from "../../utilities/types";
 
+// Handles the updating of the buyers
+
 interface UpdateBuyerFormProps {
   show: boolean;
   onHide: () => void;

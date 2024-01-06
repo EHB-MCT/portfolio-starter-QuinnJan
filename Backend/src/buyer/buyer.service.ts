@@ -43,7 +43,7 @@ export const getBuyer = async (id: number): Promise<Buyer | null> => {
   });
 };
 
-//CREATE FUNCTION
+//CREATE BUYER FUNCTION
 export const createBuyer = async (buyer: Omit<Buyer, "id">): Promise<Buyer> => {
   const { firstName, lastName, email, phonenumber } = buyer;
   const createdBuyer = await db.buyer.create({
@@ -64,7 +64,6 @@ export const createBuyer = async (buyer: Omit<Buyer, "id">): Promise<Buyer> => {
     },
   });
 
-  // Convert Prisma generated type to your defined type
   const formattedBuyer: Buyer = {
     id: createdBuyer.id,
     createdAt: createdBuyer.createdAt,
@@ -78,7 +77,7 @@ export const createBuyer = async (buyer: Omit<Buyer, "id">): Promise<Buyer> => {
   return formattedBuyer;
 };
 
-//UPDATE FUNCTION
+//UPDATE BUYER FUNCTION
 export const updateBuyer = async (
   buyer: Omit<Buyer, "id">,
   id: number

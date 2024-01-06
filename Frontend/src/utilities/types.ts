@@ -5,6 +5,8 @@ import AUDIimage from "../assets/images/Audi.jpg";
 import VOLKSWAGENimage from "../assets/images/Volkswagen.jpg";
 import FIATimage from "../assets/images/Fiat.jpg";
 
+// All 'types' and 'interfaces' listed in one file
+
 export type AddCarFormProps = {
   show: boolean;
   onHide: () => void;

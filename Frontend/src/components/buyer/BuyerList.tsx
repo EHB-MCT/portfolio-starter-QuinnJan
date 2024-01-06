@@ -5,6 +5,8 @@ import {
   deleteBuyerById,
 } from "../../services/buyer-api-services";
 
+// Handles the fetching of list buyers and the delete function
+
 interface Buyer {
   id: number;
   firstName: string;

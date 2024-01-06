@@ -79,7 +79,7 @@ describe("POST /api/cars/", () => {
   });
 });
 
-//Test to verify if buyer ID is number (or any other wrong format)
+// Test to verify if buyer ID is number (or any other wrong format)
 describe("POST /api/cars/", () => {
   it("Test response if data is incorrect format", function (done) {
     request(app)
@@ -100,27 +100,10 @@ describe("POST /api/cars/", () => {
 /**
  * @test PUT request car
  * @description all tests for PUT requests on cars
- * @returns 200, 201, 400, 404
+ * @returns 400, 404
  */
 
-// describe("PUT /api/cars/id", () => {
-//   it("Succesfully updated a car and returning 200", function (done) {
-//     request(app)
-//       .put("/api/cars/:id")
-//       .send({
-//         name: "Updated BMW",
-//         type: "SUV",
-//         price: 21000,
-//         buyerId: 1,
-//         brand: "BMW",
-//       })
-//       .set("Accept", "application/json")
-//       .expect("Content-Type", /json/)
-//       .expect(200, done);
-//   });
-// });
-
-// // Test if data input is not compleet (name)
+// Test if data input is not compleet (name)
 describe("PUT /api/cars/id", () => {
   it("Test to see if required name is missing, returning 400", function (done) {
     request(app)
@@ -137,7 +120,7 @@ describe("PUT /api/cars/id", () => {
   });
 });
 
-// // Test if data input is not compleet (price)
+// Test if data input is not compleet (price)
 describe("PUT /api/cars/id", () => {
   it("Test to see if required price is missing, returning 400", function (done) {
     request(app)
