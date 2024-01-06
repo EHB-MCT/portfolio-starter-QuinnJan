@@ -3,6 +3,8 @@ import { Store } from "../../pages/store";
 import { CarAttributes } from "../../utilities/types";
 import { fetchCars, deleteCar } from "../../services/car-api-services";
 
+// Handles the fetching of list cars and the delete function
+
 const StoreContainer = () => {
   const [storeItems, setStoreItems] = useState<CarAttributes[]>([]);
 

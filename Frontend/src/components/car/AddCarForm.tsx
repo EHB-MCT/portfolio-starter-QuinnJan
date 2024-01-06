@@ -7,6 +7,8 @@ import {
 } from "../../utilities/types";
 import { addCar } from "../../services/car-api-services";
 
+// Handles the adding of new cars with form
+
 export function AddCarForm({ show, onHide, onAdd, onCancel }: AddCarFormProps) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");

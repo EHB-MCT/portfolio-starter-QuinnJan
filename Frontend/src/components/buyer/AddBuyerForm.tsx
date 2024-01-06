@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { addBuyer } from "../../services/buyer-api-services";
 
+// Handles the adding of new buyers
+
 interface AddBuyerFormProps {
   show: boolean;
   onHide: () => void;

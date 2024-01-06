@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { UpdateFormProps } from "../../utilities/types";
 
+// Handles update function of cars
+
 export function UpdateCar({ onUpdate, onCancel }: UpdateFormProps) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");

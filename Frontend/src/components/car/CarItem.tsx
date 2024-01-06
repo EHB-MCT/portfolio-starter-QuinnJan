@@ -4,6 +4,8 @@ import { formatCurrency } from "../../utilities/formatCurrency";
 import { CarAttributes } from "../../utilities/types";
 import { getImageForBrand } from "../../utilities/brandImageMapper";
 
+// A single car component
+
 export type StoreItemProps = {
   item: CarAttributes;
   onDelete: (id: number) => void;

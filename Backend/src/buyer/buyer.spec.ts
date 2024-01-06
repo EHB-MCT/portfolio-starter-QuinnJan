@@ -95,25 +95,8 @@ describe("POST /api/buyers/", () => {
 /**
  * @test PUT request buyer (on id)
  * @description all tests for PUT requests on buyers
- * @returns 200, 400
+ * @returns 400
  */
-
-// Test if data input is correct
-// describe("PUT /api/buyers/id", () => {
-//   it("Test response if data input is correct format", function (done) {
-//     request(app)
-//       .put("/api/buyers/:id")
-//       .send({
-//         firstName: "updated-string",
-//         lastName: "updated-string",
-//         email: "updated@email.com",
-//         phonenumber: "+32470596156",
-//       })
-//       .set("Accept", "application/json")
-//       .expect("Content-Type", /json/)
-//       .expect(200, done);
-//   });
-// });
 
 // Test if data input is not compleet (email)
 describe("PUT /api/buyers/id", () => {
